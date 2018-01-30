@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
-@EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware", setDates = true, modifyOnCreate = true)
+@EnableMongoAuditing(auditorAwareRef = "securityAuditorAware", setDates = true, modifyOnCreate = true)
 public class SportLifeApplication {
 
     public static void main(String[] args) {

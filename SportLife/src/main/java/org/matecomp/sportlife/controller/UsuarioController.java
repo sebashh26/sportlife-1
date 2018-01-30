@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.matecomp.sportlife.controllers;
+package org.matecomp.sportlife.controller;
 
 import java.util.List;
-import org.matecomp.sportlife.collections.Usuario;
-import org.matecomp.sportlife.repositories.UsuarioRepository;
-import org.springframework.data.domain.Example;
+import org.matecomp.sportlife.collection.User;
+import org.matecomp.sportlife.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -36,36 +35,36 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private final UsuarioRepository repository;
+    private final UserRepository userRepository;
 
-    public UsuarioController(UsuarioRepository repository) {
-        this.repository = repository;
+    public UsuarioController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @RequestMapping(method = GET)
-    public List<Usuario> list() {
-        return this.repository.findAll();
+    public List<User> list() {
+        return this.userRepository.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = GET)
     public Object get(@PathVariable String id) {
-        return this.repository.findOne(id);
+        return this.userRepository.findOne(id);
     }
 
     @RequestMapping(method = PUT)
-    public ResponseEntity<Usuario> put(@RequestBody Usuario collection) {
-        return new ResponseEntity(this.repository.insert(collection), HttpStatus.CREATED);
+    public ResponseEntity<User> put(@RequestBody User collection) {
+        return new ResponseEntity(this.userRepository.insert(collection), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<Usuario> post(@RequestBody Usuario collection) {
-        return new ResponseEntity(this.repository.save(collection), HttpStatus.CREATED);
+    public ResponseEntity<User> post(@RequestBody User collection) {
+        return new ResponseEntity(this.userRepository.save(collection), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
     public void delete(@PathVariable String id) {
-        Usuario usuario = this.repository.findByUserName(id);
-        this.repository.delete(usuario);
+        User usuario = this.userRepository.findByUsername(id);
+        this.userRepository.delete(usuario);
     }
 
 }
